@@ -3,14 +3,14 @@
         <h1>{{ stringToSearch }}</h1>
         <div v-if="filmsList">
             <ul v-for="(film, index) in filmsList" :key="index">
-                <!-- <li>{{ film.title }}</li> -->
+                <li>{{ film.title }}</li>
                 <li>{{ film.original_title }}</li>
                 <li>{{ film.original_language }}</li>
-                <!-- <li>{{ film.vote_average }}</li> -->
+                <li>{{ film.vote_average }}</li>
             </ul>
         </div>
         <h1 v-else>Non ci sono elementi in base alla ricerca</h1>
-        <!-- <CardFilm /> -->
+        <!-- <CardFilm :film="film"/> -->
     </main>
 </template>
 
@@ -32,11 +32,13 @@ export default {
         //     axios
         //     .get(this.newApi)
         //     .then((result) => {
-        //         console.log()
+        //         this.filmsList= result.data.results
+        //         console.log(newArray)
         //     })
         //     .catch((error) => {
         //         console.error(error)
         //     })
+        //     return filmsList
         // }
     },
     updated(){
@@ -51,7 +53,12 @@ export default {
                 console.error(error)
             })
         }
-    }
+    },
+    // computed: {
+    //     newSearch(){
+
+    //     }
+    // },
 }
 </script>
 

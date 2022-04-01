@@ -9,8 +9,6 @@
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 
-
-
 export default {
   name: 'App',
   components: {
@@ -26,8 +24,13 @@ export default {
     newSearch(newString){
       if(newString.trim() !== ""){
         this.stringToSearch= newString.split(` `).join(`+`);
+      } else {
+        this.stringToSearch = "";
       }
     }
+  },
+  updated(){
+    console.log(this.stringToSearch)
   }
 }
 </script>
