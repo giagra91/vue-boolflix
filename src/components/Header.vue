@@ -1,6 +1,9 @@
 <template>
     <header>
-        <img class="px-3" src="../assets/img/boolizia.jpg" alt="">
+        <div class="logo d-flex align-items-center">
+            <img class="px-3" src="../assets/img/boolizia.jpg" alt="">
+            <h2 class="m-0">Boolflix</h2>
+        </div>
 
         <div class="form-inline d-flex justify-content-between w-50 px-2">
             <input @keyup="$emit(`search`, stringToSearch)" v-model="stringToSearch" class="form-control" type="search" placeholder="Search" >
@@ -35,13 +38,24 @@ export default {
 
 header{
     height: 10vh;
-    background-color: aqua;
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    img{
-        height: 70%;
+    div.logo{
+        height: 100%;
+
+        img{
+            height: 70%;
+        }
+
+        h2{
+            text-transform: uppercase;
+            font-weight: bold;
+            color: white;
+        }
+
     }
 }
 

@@ -1,18 +1,31 @@
 <template>
-    <ul class="my-list list-unstyled text-center">
-        <li><img class="my-poster" :src="`https://image.tmdb.org/t/p/w342` + film.poster_path" alt=""></li>
-        <li>{{ film.title }}</li>
-        <li>{{ film.original_title }}</li>
-        <li v-if="getFlag(film.original_language)"><img class="my-flag" :src="getFlag(film.original_language)" alt=""></li>
-        <li v-else>{{ film.original_language }}</li>
-        <!-- <li>{{ getStars(film.vote_average) }}</li> -->
-        <li>
-            <span v-for="(star, index) in 5" :key="index">
-                <font-awesome-icon icon="fa-solid fa-star" 
-                :class="(index + 1<= getStars(film.vote_average) ? `my-stars` : ``)" />
-            </span>
-        </li>
-    </ul>
+    <div class="my-list text-center text-white position-relative" @mouseover="hover=true" @mouseleave="hover=false">
+        <div class="film-image">
+            <img class="img-fluid" :src="`https://image.tmdb.org/t/p/w342` + film.poster_path" alt="">
+        </div>
+
+        <div class="film-info  p-4 position-absolute top-0 start-0" v-if="hover">
+            <p><strong>Titolo: </strong> 
+                {{ film.title }}
+            </p>
+            <p><strong>Titolo originale: </strong>
+                {{ film.original_title }}
+            </p>
+            <p v-if="getFlag(film.original_language)"><img class="my-flag" :src="getFlag(film.original_language)" alt=""></p>
+            <p v-else><strong>Lingua originale: </strong>
+                {{ film.original_language }}
+            </p>
+            <p><strong>Descrizione: </strong>
+                {{ film.overview }}
+            </p>
+            <p><strong>Voto: </strong>
+                <span v-for="(star, index) in 5" :key="index">
+                    <font-awesome-icon icon="fa-sopd fa-star" 
+                    :class="(index + 1<= getStars(film.vote_average) ? `my-stars` : ``)" />
+                </span>
+            </p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -21,6 +34,7 @@ export default {
     data: function(){
         return{
             isFlag: false,
+            hover: false
         }
     },
     props:{
@@ -40,12 +54,8 @@ export default {
         },
         getStars(number){
         return Math.ceil(number / 2 )
+        },
     },
-    },
-    updated(){
-        // console.log(this.isFlag)
-    }
-
 }
 </script>
 
@@ -56,11 +66,27 @@ export default {
         height: 20px;
     }
 
-    ul.my-list{
-        width: 25%;
+    div.my-list{
+        width: calc(33% - 6px);
+        min-width: 200px;
+        margin: 3px;
+        background-color: black;
+        border: 1px solid white;
 
-        img.my-poster{
-            width: 60%;
+        div.film-image{
+            width: 100%;
+        }
+
+        div.film-info{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        p{
+            margin: .4rem;
         }
     }
 
