@@ -5,11 +5,19 @@
         </div>
 
         <div class="tv-serie-info p-4 position-absolute top-0 start-0" v-if="hover">
-            <p>Titolo:{{ tvSeries.name }}</p>
-            <p>Titolo originale:{{ tvSeries.original_name }}</p>
-            <p>Lingua originale:{{ tvSeries.original_language }}</p>
-            <p>{{ tvSeries.overview }}</p>
-            <!-- <p>{{ getStars(tvSeries.vote_average) }}</p> -->
+            <p><strong>Titolo: </strong>
+                {{ tvSeries.name }}
+            </p>
+            <p><strong>Titolo originale: </strong>
+                {{ tvSeries.original_name }}
+            </p>
+            <p><strong>Lingua originale: </strong>
+                {{ tvSeries.original_language }}
+                <lang-flag :iso="tvSeries.original_language" />
+            </p>
+            <p><strong>Descrizione: </strong>
+                {{ tvSeries.overview }}
+            </p>
             <p>Voto:
                 <span v-for="(star, index) in 5" :key="index">
                     <font-awesome-icon icon="fa-sopd fa-star" 

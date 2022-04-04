@@ -13,7 +13,8 @@
             </p>
             <p v-if="getFlag(film.original_language)"><img class="my-flag" :src="getFlag(film.original_language)" alt=""></p>
             <p v-else><strong>Lingua originale: </strong>
-                {{ film.original_language }}
+                {{ film.original_language }} 
+                <lang-flag :iso="film.original_language" />
             </p>
             <p><strong>Descrizione: </strong>
                 {{ film.overview }}
@@ -41,17 +42,6 @@ export default {
         "film" : Object,
     },
     methods:{
-        getFlag(language){
-            language= "";
-            if(language === "en"){
-                language = "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg";
-                this.isFlag= true;
-            } else {
-                language= "";
-                this.isFlag= false;
-            }
-            return this.isFlag;
-        },
         getStars(number){
         return Math.ceil(number / 2 )
         },
