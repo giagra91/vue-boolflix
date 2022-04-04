@@ -1,64 +1,46 @@
 <template>
-    <main>
-        <h1>{{ stringToSearch }}</h1>
-        <div v-if="filmsList">
-            <ul v-for="(film, index) in filmsList" :key="index">
-                <li>{{ film.title }}</li>
-                <li>{{ film.original_title }}</li>
-                <li>{{ film.original_language }}</li>
-                <li>{{ film.vote_average }}</li>
-            </ul>
+    <main class="d-flex justify-content-center p-3">
+        <div class="card-container" v-if="filmsList" >
+            <CardFilm  :film="film" v-for="(film, index) in filmsList" 
+            :key="index"
+            />
         </div>
-        <h1 v-else>Non ci sono elementi in base alla ricerca</h1>
-        <!-- <CardFilm :film="film"/> -->
+        <div class="card-container" v-if="tvSeriesList">
+            <CardTvSeries  :tvSeries="tvSeries" v-for="(tvSeries, index) in tvSeriesList" 
+            :key="index"
+            />
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center" v-else>
+            <h1>Effettua la tua ricerca</h1>
+        </div>
     </main>
 </template>
 
 <script>
-import axios from "axios";
+import CardFilm from "./CardFilm.vue";
+import CardTvSeries from "./CardTvSeries.vue";
+
 export default {
     name: "IndexMain",
     props: {
-        "stringToSearch": String
+        "filmsList": Array,
+        "tvSeriesList": Array,
+    },
+    components: {
+        CardFilm,
+        CardTvSeries
     },
     data: function(){
         return{
-            newApi: `https://api.themoviedb.org/3/search/movie?api_key=1e066e335faf58831328ca092e6f9eaf&query=`,
-            filmsList: null,
         }
     },
     methods: {
-        // getApiInfo(){
-        //     axios
-        //     .get(this.newApi)
-        //     .then((result) => {
-        //         this.filmsList= result.data.results
-        //         console.log(newArray)
-        //     })
-        //     .catch((error) => {
-        //         console.error(error)
-        //     })
-        //     return filmsList
-        // }
     },
-    updated(){
-        if(this.stringToSearch.trim() !== ""){
-            axios
-            .get(this.newApi+this.stringToSearch)
-            .then((result) => {
-                this.filmsList=result.data.results
-                // console.table(this.filmsList)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-        }
-    },
-    // computed: {
-    //     newSearch(){
+    // updated(){
+    // console.log(this.tvSeriesList)
+    // }
 
-    //     }
-    // },
 }
 </script>
 
