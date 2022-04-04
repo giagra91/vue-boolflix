@@ -11,8 +11,8 @@
             />
         </div>
 
-        <div class="d-flex justify-content-center align-items-center" v-else>
-            <h1>Effettua la tua ricerca</h1>
+        <div class="d-flex justify-content-center text-white" v-else>
+            <h1 class="fw-bold text-uppercase">Effettua la tua ricerca</h1>
         </div>
     </main>
 </template>
