@@ -48,6 +48,7 @@ export default {
 
 main{
     min-height: 90vh;
+    margin-top: 10vh;
     background-color:rgb(67, 67, 67);
 }
 

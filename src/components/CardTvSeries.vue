@@ -24,16 +24,30 @@
                     :class="(index + 1<= getStars(tvSeries.vote_average) ? `my-stars` : ``)" />
                 </span>
             </p>
+            <p>
+            <strong>Attori: 
+                <font-awesome-icon icon="fa-solid fa-angle-down" @click="apiActorsList(tvSeries.id)" v-if="!isListActors" />
+                <font-awesome-icon icon="fa-solid fa-angle-up" @click="apiActorsList(tvSeries.id)" v-else />
+            </strong>
+            </p>
+            <div v-if="isListActors">
+                <span v-for="(element, index) in castArray" :key="index" v-show="index < 5">{{ element.name }}, </span>
+                
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "CardTvSeries",
     data: function(){
         return{
             hover: false,
+            isListActors: false,
+            castArray: null
         }
     },
     props: {
@@ -43,6 +57,18 @@ export default {
         getStars(number){
             return Math.ceil(number / 2 )
         },
+        apiActorsList(id){
+            this.isListActors= !this.isListActors;
+            this.castArray= null;
+            axios
+            .get(`https://api.themoviedb.org/3/tv/`+ id + `/credits?api_key=1e066e335faf58831328ca092e6f9eaf`)
+                .then((result) => {
+                this.castArray= result.data.cast;
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+        }
     },
 }
 </script>

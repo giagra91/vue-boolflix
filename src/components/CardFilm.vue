@@ -24,9 +24,14 @@
                     :class="(index + 1<= getStars(film.vote_average) ? `my-stars` : ``)" />
                 </span>
             </p>
-            <button @click="apiActorsList(film.id)">Cerca attori</button>
-            <div v-if="tryVariable">
-                <p v-for="(element, index) in castArray" :key="index">{{ element.name}}</p>
+            <p>
+                <strong>Attori: 
+                    <font-awesome-icon icon="fa-solid fa-angle-down" @click="apiActorsList(film.id)" v-if="!isListActors" />
+                    <font-awesome-icon icon="fa-solid fa-angle-up" @click="apiActorsList(film.id)" v-else />
+                </strong>
+            </p>
+            <div v-if="isListActors">
+                <span v-for="(element, index) in castArray" :key="index" v-show="index < 5">{{ element.name }}, </span>
                 
             </div>
         </div>
@@ -36,12 +41,12 @@
 <script>
 import axios from 'axios';
 export default {
-    name: "filmFilm",
+    name: "cardFilm",
     data: function(){
         return{
             hover: false,
-            tryVariable: false,
-            castArray: null
+            isListActors: false,
+            castArray: null,
         }
     },
     props:{
@@ -51,25 +56,19 @@ export default {
         getStars(number){
         return Math.ceil(number / 2 )
         },
-        testFunction(element){
-            this.tryVariable= !this.tryVariable;
-            console.log(element.id);
-            console.log(this.tryVariable)
-        },
         apiActorsList(id){
-            this.tryVariable= !this.tryVariable;
+            this.isListActors= !this.isListActors;
             this.castArray= null;
             axios
             .get(`http://api.themoviedb.org/3/movie/`+ id + `/casts?api_key=1e066e335faf58831328ca092e6f9eaf`)
                 .then((result) => {
-                console.log(result.data.cast);
                 this.castArray= result.data.cast;
+                console.log(this.castArray);
             })
             .catch((error) => {
                 console.error(error)
             })
-
-        }
+        },
     },
 }
 </script>

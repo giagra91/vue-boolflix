@@ -6,11 +6,11 @@ Vue.component('lang-flag', LangFlag);
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faStar, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faMagnifyingGlass,faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 
-library.add(faStar, faStarRegular, faMagnifyingGlass);
+library.add(faStar, faStarRegular, faMagnifyingGlass,faAngleDown,faAngleUp);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
