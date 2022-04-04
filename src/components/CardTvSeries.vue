@@ -36,11 +36,6 @@ export default {
             return Math.ceil(number / 2 )
         },
     },
-
-
-    updated(){
-    }
-
 }
 </script>
 
@@ -49,19 +44,16 @@ div.series-tv{
     width: calc(33% - 6px);
     min-width: 200px;
     margin: 3px;
-    border: 1px solid white;
     background-color: rgb(27, 27, 27);
-
     
     div.tv-serie-image{
         width: 100%;
     }
 
-
         div.tv-serie-info{
             width: 100%;
             height: 100%;
-            background-color: black;
+            background-color: rgb(27, 27, 27);
             overflow-y: auto;
             text-align: left;
 
@@ -69,7 +61,6 @@ div.series-tv{
             margin: .4rem;
             }   
         }
-
 }
 
     .my-stars{

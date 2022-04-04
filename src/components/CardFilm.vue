@@ -71,7 +71,6 @@ export default {
         min-width: 200px;
         margin: 3px;
         background-color: black;
-        border: 1px solid white;
 
         div.film-image{
             width: 100%;

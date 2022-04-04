@@ -51,12 +51,4 @@ main{
     background-color:rgb(67, 67, 67);
 }
 
-div.films{
-    border: 3px solid blue;
-}
-
-div.series{
-    border: 3px solid red;
-}
-
 </style>
