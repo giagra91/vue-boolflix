@@ -11,8 +11,7 @@
             <p><strong>Titolo originale: </strong>
                 {{ film.original_title }}
             </p>
-            <p v-if="getFlag(film.original_language)"><img class="my-flag" :src="getFlag(film.original_language)" alt=""></p>
-            <p v-else><strong>Lingua originale: </strong>
+            <p><strong>Lingua originale: </strong>
                 {{ film.original_language }} 
                 <lang-flag :iso="film.original_language" />
             </p>
@@ -34,7 +33,6 @@ export default {
     name: "filmFilm",
     data: function(){
         return{
-            isFlag: false,
             hover: false
         }
     },
