@@ -1,11 +1,11 @@
 <template>
-    <main class="d-flex justify-content-center p-3">
-        <div class="card-container" v-if="filmsList" >
+    <main class="p-3">
+        <div class="card-container films d-flex flex-wrap" v-if="filmsList" >
             <CardFilm  :film="film" v-for="(film, index) in filmsList" 
             :key="index"
             />
         </div>
-        <div class="card-container" v-if="tvSeriesList">
+        <div class="card-container series d-flex flex-wrap" v-if="tvSeriesList">
             <CardTvSeries  :tvSeries="tvSeries" v-for="(tvSeries, index) in tvSeriesList" 
             :key="index"
             />
@@ -49,6 +49,14 @@ export default {
 main{
     min-height: 90vh;
     background-color: rgb(221, 113, 113);
+}
+
+div.films{
+    border: 3px solid blue;
+}
+
+div.series{
+    border: 3px solid red;
 }
 
 </style>

@@ -33,7 +33,6 @@ export default {
             .get(this.newApi+this.stringToSearch)
             .then((result) => {
                 this.filmsList=result.data.results
-                console.warn(this.filmsList)
             })
             .catch((error) => {
                 console.error(error)
@@ -42,7 +41,6 @@ export default {
             .get(this.tvSeriesApi+this.stringToSearch)
             .then((result) => {
                 this.tvSeriesList=result.data.results;
-                console.log(this.tvSeriesList)
             })
             .catch((error) => {
                 console.error(error)
