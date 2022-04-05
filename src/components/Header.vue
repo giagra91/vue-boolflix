@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="logo d-flex align-items-center">
-            <img class="px-3" src="../assets/img/boolizia.jpg" alt="">
+            <img class="px-3" src="../assets/img/logo.svg" alt="">
             <h2 class="m-0">Boolflix</h2>
         </div>
 
@@ -58,7 +58,8 @@ header{
         h2{
             text-transform: uppercase;
             font-weight: bold;
-            color: white;
+            color: red
+            ;
         }
 
     }
