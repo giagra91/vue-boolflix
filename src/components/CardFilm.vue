@@ -1,8 +1,7 @@
 <template>
-    <div class="my-list text-center text-white position-relative" @mouseover="hover=true" @mouseleave="hover=false">
-        <div class="film-image">
-            <img class="img-fluid" :src="`https://image.tmdb.org/t/p/w342` + film.poster_path" alt="">
-        </div>
+    <div class="my-list text-center text-white position-relative mb-4" @mouseover="hover=true" @mouseleave="hover=false">
+
+            <img class="my-poster-img p-2" :src="`https://image.tmdb.org/t/p/w342` + film.poster_path" :alt="film.title + ` image`">
 
         <div class="film-info  p-4 position-absolute top-0 start-0" v-if="hover">
             <p><strong>Titolo: </strong> 
@@ -25,14 +24,21 @@
                 </span>
             </p>
             <p>
-                <strong>Attori: 
+                <strong>Attori e Generi: 
                     <font-awesome-icon icon="fa-solid fa-angle-down" @click="apiActorsList(film.id)" v-if="!isListActors" />
                     <font-awesome-icon icon="fa-solid fa-angle-up" @click="apiActorsList(film.id)" v-else />
                 </strong>
             </p>
             <div v-if="isListActors">
                 <span v-for="(element, index) in castArray" :key="index" v-show="index < 5">{{ element.name }}, </span>
-                
+                <p class="m-0"> 
+                    <strong>
+                        Generi:
+                    </strong>
+                    <span v-for="(element, index) in genresList" :key="index + `b`">
+                        {{ getMovieGenres(element.id,film.genre_ids,element.name) }}
+                    </span>
+                </p>
             </div>
         </div>
     </div>
@@ -51,6 +57,7 @@ export default {
     },
     props:{
         "film" : Object,
+        "genresList": Array,
     },
     methods:{
         getStars(number){
@@ -63,11 +70,15 @@ export default {
             .get(`http://api.themoviedb.org/3/movie/`+ id + `/casts?api_key=1e066e335faf58831328ca092e6f9eaf`)
                 .then((result) => {
                 this.castArray= result.data.cast;
-                console.log(this.castArray);
             })
             .catch((error) => {
                 console.error(error)
             })
+        },
+        getMovieGenres(genresId, myId, genresName){
+            if(myId.includes(genresId)){
+                return genresName + ",";
+            }
         },
     },
 }
@@ -86,7 +97,7 @@ export default {
         margin: 3px;
         background-color: black;
 
-        div.film-image{
+        img.my-poster-img{
             width: 100%;
         }
 

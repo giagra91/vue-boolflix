@@ -1,8 +1,7 @@
 <template>
     <div class="series-tv list-unstyled text-center text-white mb-4 position-relative" @mouseover="hover=true" @mouseleave="hover=false">
-        <div class="tv-serie-image">
-            <img class="img-fluid" :src="`https://image.tmdb.org/t/p/w342` + tvSeries.poster_path" alt="">
-        </div>
+
+            <img class="my-poster-img p-2" :src="`https://image.tmdb.org/t/p/w342` + tvSeries.poster_path" :alt="tvSeries.name + ` image`">
 
         <div class="tv-serie-info p-4 position-absolute top-0 start-0" v-if="hover">
             <p><strong>Titolo: </strong>
@@ -80,7 +79,7 @@ div.series-tv{
     margin: 3px;
     background-color: rgb(27, 27, 27);
     
-    div.tv-serie-image{
+    img.my-poster-img{
         width: 100%;
     }
 
