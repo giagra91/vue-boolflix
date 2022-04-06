@@ -1,7 +1,7 @@
 <template>
     <main class="p-3">
         <div class="card-container films d-flex flex-wrap p-3" v-if="filmsList" >
-            <CardFilm :genresList="genresList"  :film="film" v-for="(film, index) in filmsList" 
+            <CardFilm :genresList="genresList" :film="film" v-for="(film, index) in filmsList" 
             :key="index"
             />
         </div>
@@ -44,6 +44,7 @@ export default {
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=1e066e335faf58831328ca092e6f9eaf`)
         .then((result) =>{
             this.genresList= result.data.genres;
+            this.$emit(`getMovieGenres`, this.genresList)
         })
         .catch((error) =>{
             console.error(error)
@@ -51,10 +52,13 @@ export default {
         axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=1e066e335faf58831328ca092e6f9eaf`)
         .then((result) =>{
             this.tvGenresList= result.data.genres;
+            this.$emit(`getTvGenres`, this.tvGenresList)
         })
         .catch((error) =>{
             console.error(error)
         })
+    },
+    updated(){
     }
 }
 </script>

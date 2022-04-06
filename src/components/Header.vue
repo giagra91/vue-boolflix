@@ -5,7 +5,22 @@
             <h2 class="m-0">Boolflix</h2>
         </div>
 
-        <div class="form-inline d-flex justify-content-between w-50 px-2">
+        <div class="d-flex flex-column">
+            <label class="text-white" for="movie-genres">Seleziona film per genere</label>
+            <select name="movie-genres" id="movie-genres" v-model="selectedFilmGenre" @click="$emit(`newFilmGenre`, selectedFilmGenre)" >
+                <option value="">Nessuna selezione</option>
+                <option v-for="(element, index) in movieGenresList" :key="index" :value="element.name">{{ element.name }}</option>
+            </select>
+        </div>
+        <div class="d-flex flex-column">
+            <label class="text-white" for="movie-genres">Seleziona serie tv per genere</label>
+            <select class="ms-2" name="tv-genres" >
+                <option value="">Nessuna selezione</option>
+                <option v-for="(element, index) in tvGenresList" :key="index + `d`" :value="element.name">{{ element.name }}</option>
+            </select>
+        </div>
+
+        <div class="form-inline d-flex justify-content-between width-third px-2">
             <input @keyup="$emit(`search`, stringToSearch)" v-model="stringToSearch" class="form-control" type="search" placeholder="Search" >
             <button @click="$emit(`search`, stringToSearch)" class="btn btn-outline-success ms-2" type="submit">Search</button>
         </div>
@@ -17,8 +32,13 @@ export default {
     name: "IndexHeader",
     data: function(){
         return{
-            stringToSearch: ""
+            stringToSearch: "",
+            selectedFilmGenre: "",
         }
+    },
+    props:{
+        "movieGenresList": Array,
+        "tvGenresList": Array,
     },
     methods:{
         newString(){
@@ -29,8 +49,9 @@ export default {
             }
         }
     },
-    updated(){
-    }
+    // updated(){
+    //     console.log(this.movieGenresList)
+    // }
 }
 </script>
 
@@ -61,6 +82,10 @@ header{
             color: red
             ;
         }
+    }
+
+    .width-third{
+        width: 35%;
     }
 }
 
