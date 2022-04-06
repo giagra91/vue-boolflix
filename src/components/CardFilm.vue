@@ -1,7 +1,10 @@
 <template>
     <div class="my-list text-center text-white position-relative mb-4" @mouseover="hover=true" @mouseleave="hover=false">
-
-            <img class="my-poster-img p-2" :src="`https://image.tmdb.org/t/p/w342` + film.poster_path" :alt="film.title + ` image`">
+        <img class="my-poster-img p-2" v-if="film.poster_path" :src="`https://image.tmdb.org/t/p/w342` + film.poster_path" :alt="film.title + ` image`">
+        <div v-else>
+            <img class="my-poster-img p-2" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" :alt="film.title">
+            <h4 class="px-3">{{ film.title }}</h4>
+        </div>
 
         <div class="film-info  p-4 position-absolute top-0 start-0" v-if="hover">
             <p><strong>Titolo: </strong> 
