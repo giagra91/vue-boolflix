@@ -7,14 +7,14 @@
 
         <div class="d-flex flex-column">
             <label class="text-white" for="movie-genres">Seleziona film per genere</label>
-            <select name="movie-genres" id="movie-genres" v-model="selectedFilmGenre" @click="$emit(`newFilmGenre`, selectedFilmGenre)" >
+            <select name="movie-genres" id="movie-genres" v-model="selectedFilmGenre" @change="$emit(`newFilmGenre`, selectedFilmGenre)" >
                 <option value="">Nessuna selezione</option>
                 <option v-for="(element, index) in movieGenresList" :key="index" :value="element.name">{{ element.name }}</option>
             </select>
         </div>
         <div class="d-flex flex-column">
             <label class="text-white" for="movie-genres">Seleziona serie tv per genere</label>
-            <select class="ms-2" name="tv-genres" id="tv-genres" v-model="selectedTvGenre" @click="$emit(`newTvGenre`, selectedTvGenre)" >
+            <select class="ms-2" name="tv-genres" id="tv-genres" v-model="selectedTvGenre" @change="$emit(`newTvGenre`, selectedTvGenre)" >
                 <option value="">Nessuna selezione</option>
                 <option v-for="(element, index) in tvGenresList" :key="index + `d`" :value="element.name">{{ element.name }}</option>
             </select>

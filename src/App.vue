@@ -82,7 +82,6 @@ export default {
         axios.get(`https://api.themoviedb.org/3/search/tv?api_key=1e066e335faf58831328ca092e6f9eaf&query=` + newGenre)
         .then((result) =>{
             this.tvSeriesList=result.data.results;
-            console.log(result)
         })
         .catch((error) =>{
             console.error(error)
