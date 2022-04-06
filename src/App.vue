@@ -23,7 +23,7 @@ export default {
       filmsList: null,
       tvSeriesList: null,
       newApi: `https://api.themoviedb.org/3/search/movie?api_key=1e066e335faf58831328ca092e6f9eaf&query=`,
-      tvSeriesApi: `https://api.themoviedb.org/3/search/tv?api_key=1e066e335faf58831328ca092e6f9eaf&language=it_IT&query=`
+      tvSeriesApi: `https://api.themoviedb.org/3/search/tv?api_key=1e066e335faf58831328ca092e6f9eaf&language=it_IT&query=`,
     }
   },
   methods: {

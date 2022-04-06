@@ -14,8 +14,12 @@
                 {{ tvSeries.original_name }}
             </p>
             <p><strong>Lingua originale: </strong>
-                {{ tvSeries.original_language }}
-                <lang-flag :iso="tvSeries.original_language" />
+                <span  v-if="langList.includes(tvSeries.original_language)">
+                    <lang-flag :iso="tvSeries.original_language"/>
+                </span>
+                <span v-else>
+                    {{ tvSeries.original_language }}
+                </span>
             </p>
             <p><strong>Descrizione: </strong>
                 {{ tvSeries.overview }}
@@ -56,7 +60,9 @@ export default {
         return{
             hover: false,
             isListActors: false,
-            castArray: null
+            castArray: null,
+            langList: ["ar", "am", "az", "be", "bn", "bg", "zh", "ca", "cs", "en", "et", "fr", "de", "el", "ha", "hi", "hu", "it", "ja",
+            "jv", "km", "ko", "lv", "ms", "fa", "pl", "pt", "ro", "ru", "es", "sw", "ta", "te", "th", "tr", "uz", "vi"],
         }
     },
     props: {

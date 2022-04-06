@@ -14,8 +14,12 @@
                 {{ film.original_title }}
             </p>
             <p><strong>Lingua originale: </strong>
-                {{ film.original_language }} 
-                <lang-flag :iso="film.original_language" />
+                <span  v-if="langList.includes(film.original_language)">
+                    <lang-flag :iso="film.original_language"/>
+                </span>
+                <span v-else>
+                    {{ film.original_language }} 
+                </span>
             </p>
             <p><strong>Descrizione: </strong>
                 {{ film.overview }}
@@ -56,6 +60,8 @@ export default {
             hover: false,
             isListActors: false,
             castArray: null,
+            langList: ["ar", "am", "az", "be", "bn", "bg", "zh", "ca", "cs", "en", "et", "fr", "de", "el", "ha", "hi", "hu", "it", "ja",
+                    "jv", "km", "ko", "lv", "ms", "fa", "pl", "pt", "ro", "ru", "es", "sw", "ta", "te", "th", "tr", "uz", "vi"],
         }
     },
     props:{
@@ -83,6 +89,9 @@ export default {
                 return genresName + ",";
             }
         },
+        test(e){
+            console.log(e)
+        }
     },
 }
 </script>
