@@ -27,14 +27,21 @@
                 </span>
             </p>
             <p>
-            <strong>Attori: 
+            <strong>Attori e Generi: 
                 <font-awesome-icon icon="fa-solid fa-angle-down" @click="apiActorsList(tvSeries.id)" v-if="!isListActors" />
                 <font-awesome-icon icon="fa-solid fa-angle-up" @click="apiActorsList(tvSeries.id)" v-else />
             </strong>
             </p>
             <div v-if="isListActors">
                 <span v-for="(element, index) in castArray" :key="index" v-show="index < 5">{{ element.name }}, </span>
-                
+                <p class="m-0"> 
+                    <strong>
+                        Generi:
+                    </strong>
+                    <span v-for="(element, index) in tvGenresList" :key="index + `c`">
+                        {{ getTvSeriesGenres(element.id,tvSeries.genre_ids,element.name) }}
+                    </span>
+                </p>
             </div>
         </div>
     </div>
@@ -54,6 +61,7 @@ export default {
     },
     props: {
     "tvSeries": Object,
+    "tvGenresList": Array,
     },
     methods:{
         getStars(number){
@@ -70,7 +78,12 @@ export default {
             .catch((error) => {
                 console.error(error)
             })
-        }
+        },
+        getTvSeriesGenres(genresId, myId, genresName){
+            if(myId.includes(genresId)){
+                return genresName + ",";
+            }
+        },
     },
 }
 </script>

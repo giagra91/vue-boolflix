@@ -6,7 +6,7 @@
             />
         </div>
         <div class="card-container series d-flex flex-wrap p-3" v-if="tvSeriesList">
-            <CardTvSeries  :tvSeries="tvSeries" v-for="(tvSeries, index) in tvSeriesList" 
+            <CardTvSeries :tvGenresList="tvGenresList" :tvSeries="tvSeries" v-for="(tvSeries, index) in tvSeriesList" 
             :key="index"
             />
         </div>
@@ -35,6 +35,7 @@ export default {
     data: function(){
         return{
             genresList: null,
+            tvGenresList: null,
         }
     },
     methods: {
@@ -43,7 +44,13 @@ export default {
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=1e066e335faf58831328ca092e6f9eaf`)
         .then((result) =>{
             this.genresList= result.data.genres;
-            // console.log(this.genresList)
+        })
+        .catch((error) =>{
+            console.error(error)
+        })
+        axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=1e066e335faf58831328ca092e6f9eaf`)
+        .then((result) =>{
+            this.tvGenresList= result.data.genres;
         })
         .catch((error) =>{
             console.error(error)
