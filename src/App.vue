@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Header @search="newSearch" :movieGenresList="movieGenresList" :tvGenresList="tvGenresList" @newFilmGenre="newFilmGenre" />
+    <Header @search="newSearch" :movieGenresList="movieGenresList" 
+    :tvGenresList="tvGenresList" @newFilmGenre="newFilmGenre" @newTvGenre="newTvGenre" />
     <Main :filmsList="filmsList" :tvSeriesList="tvSeriesList" 
     @getMovieGenres="getMovieGenres" @getTvGenres="getTvGenres"  />
   </div>
@@ -28,6 +29,7 @@ export default {
       movieGenresList: [],
       tvGenresList: [],
       newSelectedFilmGenre: ``,
+      newSelectedTvGenre: ``,
     }
   },
   methods: {
@@ -67,13 +69,26 @@ export default {
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=1e066e335faf58831328ca092e6f9eaf&query=` + newGenre)
         .then((result) =>{
             this.filmsList=result.data.results;
-            console.log(result)
         })
         .catch((error) =>{
             console.error(error)
         })
         } 
         this.filmsList=null;
+    },
+    newTvGenre(newGenre){
+      this.newSelectedTvGenre=newGenre;
+      if(newGenre !== ""){
+        axios.get(`https://api.themoviedb.org/3/search/tv?api_key=1e066e335faf58831328ca092e6f9eaf&query=` + newGenre)
+        .then((result) =>{
+            this.tvSeriesList=result.data.results;
+            console.log(result)
+        })
+        .catch((error) =>{
+            console.error(error)
+        })
+        }
+        this.tvSeriesList= null;
     }
   },
   // updated(){
